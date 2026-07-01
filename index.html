@@ -1,0 +1,702 @@
+<!DOCTYPE html>
+
+<html lang="vi"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>CFO Thuê Ngoài - Tâm An CFO</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700&amp;family=Inter:wght@400;500;600&amp;family=JetBrains+Mono:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="chatbot.css" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "surface-container": "#f0eded",
+                      "on-primary": "#ffffff",
+                      "on-error": "#ffffff",
+                      "primary-container": "#004a80",
+                      "surface-tint": "#286198",
+                      "on-background": "#1b1c1c",
+                      "on-tertiary-fixed": "#410003",
+                      "on-secondary": "#ffffff",
+                      "inverse-on-surface": "#f3f0f0",
+                      "tertiary": "#6a0008",
+                      "secondary-fixed-dim": "#92ccff",
+                      "tertiary-container": "#950010",
+                      "on-primary-fixed-variant": "#00497e",
+                      "surface-dim": "#dcd9d9",
+                      "surface-container-high": "#eae8e7",
+                      "error-container": "#ffdad6",
+                      "border-subtle": "#E1E1E1",
+                      "on-tertiary-container": "#ff9c93",
+                      "surface": "#fbf9f8",
+                      "surface-container-highest": "#e4e2e1",
+                      "on-tertiary-fixed-variant": "#930010",
+                      "primary-fixed": "#d2e4ff",
+                      "primary-fixed-dim": "#9fcaff",
+                      "inverse-surface": "#303030",
+                      "outline": "#727781",
+                      "surface-container-low": "#f6f3f2",
+                      "on-surface": "#1b1c1c",
+                      "on-secondary-fixed-variant": "#004b73",
+                      "taman-red-accent": "#D32F2F",
+                      "on-primary-container": "#88baf7",
+                      "tertiary-fixed": "#ffdad6",
+                      "on-secondary-container": "#00476e",
+                      "surface-container-lowest": "#ffffff",
+                      "primary": "#00335b",
+                      "taman-blue-deep": "#004A80",
+                      "surface-gray": "#F8FAFC",
+                      "secondary-fixed": "#cce5ff",
+                      "background": "#fbf9f8",
+                      "surface-variant": "#e4e2e1",
+                      "on-error-container": "#93000a",
+                      "tertiary-fixed-dim": "#ffb3ac",
+                      "on-tertiary": "#ffffff",
+                      "error": "#ba1a1a",
+                      "secondary": "#006497",
+                      "outline-variant": "#c2c7d1",
+                      "inverse-primary": "#9fcaff",
+                      "on-surface-variant": "#42474f",
+                      "taman-blue-bright": "#0088CC",
+                      "on-secondary-fixed": "#001d31",
+                      "on-primary-fixed": "#001d37",
+                      "secondary-container": "#58b8ff",
+                      "surface-bright": "#fbf9f8"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.125rem",
+                      "lg": "0.25rem",
+                      "xl": "0.5rem",
+                      "full": "0.75rem"
+              },
+              "spacing": {
+                      "margin-desktop": "40px",
+                      "section-gap": "80px",
+                      "container-max": "1280px",
+                      "gutter": "24px",
+                      "base": "8px",
+                      "margin-mobile": "16px"
+              },
+              "fontFamily": {
+                      "headline-lg": [
+                              "Hanken Grotesk"
+                      ],
+                      "data-point": [
+                              "JetBrains Mono"
+                      ],
+                      "body-md": [
+                              "Inter"
+                      ],
+                      "title-md": [
+                              "Hanken Grotesk"
+                      ],
+                      "headline-lg-mobile": [
+                              "Hanken Grotesk"
+                      ],
+                      "body-lg": [
+                              "Inter"
+                      ],
+                      "label-md": [
+                              "JetBrains Mono"
+                      ],
+                      "display-lg": [
+                              "Hanken Grotesk"
+                      ]
+              },
+              "fontSize": {
+                      "headline-lg": [
+                              "32px",
+                              {
+                                      "lineHeight": "40px",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "data-point": [
+                              "20px",
+                              {
+                                      "lineHeight": "24px",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "body-md": [
+                              "16px",
+                              {
+                                      "lineHeight": "24px",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "title-md": [
+                              "20px",
+                              {
+                                      "lineHeight": "28px",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "headline-lg-mobile": [
+                              "24px",
+                              {
+                                      "lineHeight": "32px",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "body-lg": [
+                              "18px",
+                              {
+                                      "lineHeight": "28px",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "label-md": [
+                              "14px",
+                              {
+                                      "lineHeight": "20px",
+                                      "letterSpacing": "0.02em",
+                                      "fontWeight": "500"
+                              }
+                      ],
+                      "display-lg": [
+                              "48px",
+                              {
+                                      "lineHeight": "56px",
+                                      "letterSpacing": "-0.02em",
+                                      "fontWeight": "700"
+                              }
+                      ]
+              }
+      },
+          },
+        }
+    </script>
+<style>
+        html {
+            scroll-behavior: smooth;
+        }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(225, 225, 225, 0.5);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+        }
+        .text-gradient {
+            background: linear-gradient(90deg, #004A80 0%, #0088CC 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* ---- Scroll reveal ---- */
+        .reveal {
+            opacity: 0;
+            transform: translateY(28px);
+            transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1), transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+            will-change: opacity, transform;
+        }
+        .reveal-left { transform: translateX(-40px); }
+        .reveal-right { transform: translateX(40px); }
+        .reveal-scale { transform: scale(0.92); }
+        .reveal.in-view {
+            opacity: 1;
+            transform: translate(0, 0) scale(1);
+        }
+        .reveal-delay-1 { transition-delay: 0.1s; }
+        .reveal-delay-2 { transition-delay: 0.2s; }
+        .reveal-delay-3 { transition-delay: 0.3s; }
+        .reveal-delay-4 { transition-delay: 0.4s; }
+
+        /* ---- Header entrance ---- */
+        @keyframes headerDrop {
+            from { opacity: 0; transform: translateY(-100%); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .header-animate {
+            animation: headerDrop 0.6s cubic-bezier(0.16, 1, 0.3, 1) both;
+        }
+
+        /* ---- Hero ---- */
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(24px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes fadeInRight {
+            from { opacity: 0; transform: translateX(40px) scale(0.97); }
+            to { opacity: 1; transform: translateX(0) scale(1); }
+        }
+        .hero-in-1 { animation: fadeInUp 0.7s 0.05s cubic-bezier(0.16, 1, 0.3, 1) both; }
+        .hero-in-2 { animation: fadeInUp 0.7s 0.2s cubic-bezier(0.16, 1, 0.3, 1) both; }
+        .hero-in-3 { animation: fadeInUp 0.7s 0.35s cubic-bezier(0.16, 1, 0.3, 1) both; }
+        .hero-in-4 { animation: fadeInRight 0.8s 0.3s cubic-bezier(0.16, 1, 0.3, 1) both; }
+
+        @keyframes floatY {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-8px); }
+        }
+        .float-icon {
+            animation: floatY 3s ease-in-out infinite;
+        }
+
+        @keyframes pulseGlow {
+            0%, 100% { box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05); }
+            50% { box-shadow: 0 8px 30px rgba(0, 136, 204, 0.18); }
+        }
+
+        /* ---- Process connecting line draw ---- */
+        .process-line {
+            transform-origin: left center;
+            transform: scaleX(0);
+            transition: transform 1.1s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .process-line.in-view {
+            transform: scaleX(1);
+        }
+        .process-step {
+            transition: transform 0.3s ease;
+        }
+        .process-step:hover .process-badge {
+            transform: scale(1.12) rotate(-4deg);
+        }
+        .process-badge {
+            transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        /* ---- Buttons & links tactile feedback ---- */
+        a, button {
+            -webkit-tap-highlight-color: transparent;
+        }
+        .btn-tactile:active {
+            transform: scale(0.96);
+        }
+
+        /* ---- Bento icon hover ---- */
+        .icon-badge {
+            transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1), background-color 0.3s ease;
+        }
+        .group:hover .icon-badge {
+            transform: scale(1.15) rotate(8deg);
+        }
+
+        /* ---- Nav underline ---- */
+        .nav-link {
+            position: relative;
+        }
+        .nav-link::after {
+            content: "";
+            position: absolute;
+            left: 0;
+            bottom: -2px;
+            width: 0;
+            height: 2px;
+            background: currentColor;
+            transition: width 0.3s ease;
+        }
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            html { scroll-behavior: auto; }
+            *, *::before, *::after {
+                animation-duration: 0.001ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.001ms !important;
+            }
+            .reveal { opacity: 1; transform: none; }
+        }
+    </style>
+</head>
+<body class="bg-surface-gray text-on-surface font-body-md antialiased pt-20">
+<!-- Header (TopNavBar Component) -->
+<header class="header-animate fixed top-0 w-full z-50 bg-surface/90 dark:bg-surface-dim/90 backdrop-blur-md shadow-sm border-b border-border-subtle dark:border-outline-variant">
+<div class="flex justify-between items-center px-margin-desktop py-4 max-w-container-max mx-auto">
+<div class="flex items-center gap-4">
+<img class="h-10 object-contain transition-transform duration-300 hover:scale-105" data-alt="Tâm An CFO Logo, corporate, clean design" src="https://lh3.googleusercontent.com/aida/AP1WRLvUfWt2njG78fZqgteYbyy40X7-RPgOj2JmjyyZgEm2Im5sZf2ao4f1RQh4lR0TcGnjWl1UAGtWF6SaP62I0KwRcDoJaRM3aEMu_QwLB4EwE3jyEP8O6uyQSNm-V5ZFyZBsYRTkBhPUzP_347PRgwFmB0s4iFCWg24EINXojjQ_tuwx_R1pypbqOfbxawZbBqAXMagIrQuLhGIdVLcnlC7hz46lwEDPj_ZQMjLWNOoGYDdxR2scT0y2uZk"/>
+<span class="font-headline-lg text-headline-lg font-bold text-taman-blue-deep dark:text-primary-fixed hidden sm:block">Tâm An CFO</span>
+</div>
+<nav class="hidden md:flex gap-8">
+<a class="nav-link text-taman-blue-bright font-bold border-b-2 border-taman-blue-bright pb-1 font-title-md text-title-md hover:bg-surface-container-low dark:hover:bg-surface-container-highest transition-colors duration-200" href="#dich-vu">Dịch vụ</a>
+<a class="nav-link text-on-surface-variant dark:text-surface-variant hover:text-taman-blue-deep font-title-md text-title-md hover:bg-surface-container-low dark:hover:bg-surface-container-highest transition-colors duration-200" href="#loi-ich">Lợi ích</a>
+<a class="nav-link text-on-surface-variant dark:text-surface-variant hover:text-taman-blue-deep font-title-md text-title-md hover:bg-surface-container-low dark:hover:bg-surface-container-highest transition-colors duration-200" href="#quy-trinh">Quy trình</a>
+<a class="nav-link text-on-surface-variant dark:text-surface-variant hover:text-taman-blue-deep font-title-md text-title-md hover:bg-surface-container-low dark:hover:bg-surface-container-highest transition-colors duration-200" href="#chuyen-gia">Chuyên gia</a>
+<a class="nav-link text-on-surface-variant dark:text-surface-variant hover:text-taman-blue-deep font-title-md text-title-md hover:bg-surface-container-low dark:hover:bg-surface-container-highest transition-colors duration-200" href="#bao-gia">Báo giá</a>
+</nav>
+<a class="btn-tactile bg-taman-blue-deep text-on-primary px-6 py-2 rounded-lg font-title-md text-title-md hover:bg-taman-blue-bright hover:-translate-y-0.5 hover:shadow-lg transition-all duration-200 shadow-md" href="#lien-he">Nhận tư vấn miễn phí</a>
+</div>
+</header>
+<!-- Hero Section -->
+<section class="relative pt-24 pb-32 px-margin-desktop lg:px-0 overflow-hidden bg-white">
+<div class="absolute inset-0 z-0">
+<div class="absolute right-0 top-0 w-1/2 h-full bg-gradient-to-l from-surface-container-low to-transparent"></div>
+</div>
+<div class="max-w-container-max mx-auto relative z-10 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+<div class="space-y-8">
+<h1 class="hero-in-1 font-display-lg text-display-lg text-taman-blue-deep leading-tight">
+                    CFO Thuê Ngoài - Giải Pháp <span class="text-gradient">Tài Chính Chiến Lược</span> Cho Doanh Nghiệp SME
+                </h1>
+<p class="hero-in-2 font-body-lg text-body-lg text-on-surface-variant max-w-xl">
+                    Tối ưu hóa dòng tiền, kiểm soát rủi ro và hỗ trợ quyết định kinh doanh đột phá với đội ngũ Giám đốc Tài chính chuyên nghiệp từ Tâm An, mà không cần chi phí khổng lồ của một CFO toàn thời gian.
+                </p>
+<div class="hero-in-3 flex flex-col sm:flex-row gap-4 pt-4">
+<a class="btn-tactile bg-taman-blue-deep text-on-primary px-8 py-4 rounded-lg font-title-md text-title-md text-center hover:bg-taman-blue-bright hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1" href="#lien-he">
+                        Nhận tư vấn miễn phí
+                    </a>
+<a class="btn-tactile border border-outline text-taman-blue-deep px-8 py-4 rounded-lg font-title-md text-title-md text-center hover:bg-surface-container-low hover:-translate-y-1 transition-all duration-300" href="#dich-vu">
+                        Tìm hiểu thêm
+                    </a>
+</div>
+</div>
+<div class="hero-in-4 relative h-[500px] rounded-xl overflow-hidden shadow-2xl">
+<img class="w-full h-full object-cover transition-transform duration-700 hover:scale-105" data-alt="A high-end corporate office setting with modern glass walls, bright lighting, and a team of executives reviewing financial charts on a large digital screen. The mood is professional, strategic, and forward-thinking, emphasizing clarity and growth in a modern business environment. Colors are sleek, leaning towards deep blues and crisp whites." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCFmfnh3HMyEWifyPKISXMDqZpZZENSY-tPTMB9nt-i2Tv7Co9E_FPt8Qve0Z8ibcABqwcat7GBlFF4J_mDdKmFPFBKf2wrGyiFMgl7J5FU1QHOfLxQ_itNpJ4Im3CG6f97xMgq06I2O_NkI1JAHgLhRn6xsJn6BBnmgCQqT7FmWEdNrd2hHDm2InlQY1-5jol2t4rpwNeBvvWWURTJ_Vo2xCorr0kTDo0vFmFJk-OS5rgmn4XG_rwewbSQNIhbWmCyh_MFZW3MJUQ"/>
+<div class="absolute bottom-6 left-6 right-6 glass-card p-6 rounded-xl flex items-center justify-between" style="animation: pulseGlow 3s ease-in-out infinite;">
+<div>
+<p class="font-label-md text-label-md text-on-surface-variant uppercase tracking-wider">Tối ưu dòng tiền</p>
+<p class="font-headline-lg text-headline-lg text-taman-blue-deep"><span class="counter" data-target="24">0</span>%</p>
+</div>
+<span class="material-symbols-outlined text-4xl text-secondary float-icon">trending_up</span>
+</div>
+</div>
+</div>
+</section>
+<!-- Giới thiệu ngắn -->
+<section class="py-section-gap bg-surface-gray px-margin-desktop">
+<div class="max-w-container-max mx-auto text-center max-w-3xl">
+<h2 class="reveal font-headline-lg text-headline-lg text-taman-blue-deep mb-6">Tại sao doanh nghiệp cần CFO Thuê Ngoài?</h2>
+<p class="reveal reveal-delay-1 font-body-lg text-body-lg text-on-surface-variant">
+                Trong bối cảnh kinh doanh biến động, việc quản lý tài chính không chỉ dừng lại ở kế toán sổ sách. CFO thuê ngoài mang đến cái nhìn chiến lược, hệ thống báo cáo hiện đại và khả năng dự báo dòng tiền, giúp doanh nghiệp SME ra quyết định chính xác và an tâm phát triển bền vững.
+            </p>
+</div>
+</section>
+<!-- Lợi ích (Bento Grid) -->
+<section class="py-section-gap px-margin-desktop bg-white" id="loi-ich">
+<div class="max-w-container-max mx-auto">
+<div class="reveal text-center mb-16">
+<h2 class="font-headline-lg text-headline-lg text-taman-blue-deep mb-4">Giá Trị Cốt Lõi Mang Lại</h2>
+<div class="w-24 h-1 bg-taman-red-accent mx-auto rounded-full"></div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-gutter">
+<!-- Card 1 -->
+<div class="group reveal reveal-scale glass-card p-8 rounded-xl hover:-translate-y-2 hover:shadow-xl transition-all duration-300 border-t-4 border-t-taman-blue-deep">
+<div class="icon-badge bg-surface-container-low w-14 h-14 rounded-full flex items-center justify-center mb-6">
+<span class="material-symbols-outlined text-taman-blue-deep text-3xl">savings</span>
+</div>
+<h3 class="font-title-md text-title-md text-on-surface mb-3">Tiết kiệm chi phí</h3>
+<p class="font-body-md text-body-md text-on-surface-variant">Tối ưu hóa ngân sách so với việc duy trì một Giám đốc Tài chính toàn thời gian, trong khi vẫn nhận được giá trị tương đương.</p>
+</div>
+<!-- Card 2 -->
+<div class="group reveal reveal-scale reveal-delay-1 glass-card p-8 rounded-xl hover:-translate-y-2 hover:shadow-xl transition-all duration-300 border-t-4 border-t-taman-blue-bright">
+<div class="icon-badge bg-surface-container-low w-14 h-14 rounded-full flex items-center justify-center mb-6">
+<span class="material-symbols-outlined text-taman-blue-bright text-3xl">psychology</span>
+</div>
+<h3 class="font-title-md text-title-md text-on-surface mb-3">Chuyên môn cao</h3>
+<p class="font-body-md text-body-md text-on-surface-variant">Được tư vấn bởi đội ngũ chuyên gia tài chính giàu kinh nghiệm thực chiến đa ngành, nắm bắt nhanh các vấn đề trọng yếu.</p>
+</div>
+<!-- Card 3 -->
+<div class="group reveal reveal-scale reveal-delay-2 glass-card p-8 rounded-xl hover:-translate-y-2 hover:shadow-xl transition-all duration-300 border-t-4 border-t-secondary">
+<div class="icon-badge bg-surface-container-low w-14 h-14 rounded-full flex items-center justify-center mb-6">
+<span class="material-symbols-outlined text-secondary text-3xl">monitoring</span>
+</div>
+<h3 class="font-title-md text-title-md text-on-surface mb-3">Hệ thống báo cáo hiện đại</h3>
+<p class="font-body-md text-body-md text-on-surface-variant">Ứng dụng công nghệ và AI để xây dựng dashboard quản trị minh bạch, real-time, dễ dàng theo dõi KPI.</p>
+</div>
+<!-- Card 4 -->
+<div class="group reveal reveal-scale reveal-delay-3 glass-card p-8 rounded-xl hover:-translate-y-2 hover:shadow-xl transition-all duration-300 border-t-4 border-t-taman-red-accent">
+<div class="icon-badge bg-surface-container-low w-14 h-14 rounded-full flex items-center justify-center mb-6">
+<span class="material-symbols-outlined text-taman-red-accent text-3xl">handshake</span>
+</div>
+<h3 class="font-title-md text-title-md text-on-surface mb-3">Đồng hành chiến lược</h3>
+<p class="font-body-md text-body-md text-on-surface-variant">Không chỉ đưa ra con số, chúng tôi hỗ trợ phân tích và đưa ra các quyết định kinh doanh chiến lược hiệu quả.</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Các dịch vụ chi tiết -->
+<section class="py-section-gap px-margin-desktop bg-surface-gray" id="dich-vu">
+<div class="max-w-container-max mx-auto">
+<div class="reveal text-center mb-16">
+<h2 class="font-headline-lg text-headline-lg text-taman-blue-deep mb-4">Hạng Mục Dịch Vụ CFO</h2>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-2xl mx-auto">Giải pháp toàn diện bảo vệ và phát triển tài sản doanh nghiệp</p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+<!-- Dịch vụ 1 -->
+<div class="group reveal reveal-left bg-white p-8 rounded-xl shadow-sm border border-border-subtle flex gap-6 hover:shadow-lg hover:-translate-y-1 hover:border-taman-blue-bright/40 transition-all duration-300">
+<div class="icon-badge flex-shrink-0 mt-1">
+<span class="material-symbols-outlined text-taman-blue-deep text-4xl">account_balance_wallet</span>
+</div>
+<div>
+<h3 class="font-title-md text-title-md text-taman-blue-deep mb-2">Quản trị dòng tiền</h3>
+<p class="font-body-md text-body-md text-on-surface-variant">Lập kế hoạch thu chi, dự báo dòng tiền ngắn và dài hạn. Kiểm soát chặt chẽ vốn lưu động, đảm bảo tính thanh khoản an toàn cho doanh nghiệp.</p>
+</div>
+</div>
+<!-- Dịch vụ 2 -->
+<div class="group reveal reveal-right bg-white p-8 rounded-xl shadow-sm border border-border-subtle flex gap-6 hover:shadow-lg hover:-translate-y-1 hover:border-taman-blue-bright/40 transition-all duration-300">
+<div class="icon-badge flex-shrink-0 mt-1">
+<span class="material-symbols-outlined text-taman-blue-deep text-4xl">timeline</span>
+</div>
+<div>
+<h3 class="font-title-md text-title-md text-taman-blue-deep mb-2">Lập kế hoạch tài chính</h3>
+<p class="font-body-md text-body-md text-on-surface-variant">Xây dựng ngân sách hoạt động, dự phóng báo cáo tài chính. Phân tích kịch bản kinh doanh và lập chiến lược tối ưu hóa cấu trúc vốn.</p>
+</div>
+</div>
+<!-- Dịch vụ 3 -->
+<div class="group reveal reveal-left bg-white p-8 rounded-xl shadow-sm border border-border-subtle flex gap-6 hover:shadow-lg hover:-translate-y-1 hover:border-taman-blue-bright/40 transition-all duration-300">
+<div class="icon-badge flex-shrink-0 mt-1">
+<span class="material-symbols-outlined text-taman-blue-deep text-4xl">security</span>
+</div>
+<div>
+<h3 class="font-title-md text-title-md text-taman-blue-deep mb-2">Kiểm soát nội bộ</h3>
+<p class="font-body-md text-body-md text-on-surface-variant">Thiết lập quy trình kiểm soát rủi ro, rà soát hệ thống kế toán. Đảm bảo tuân thủ pháp lý và minh bạch trong báo cáo tài chính.</p>
+</div>
+</div>
+<!-- Dịch vụ 4 -->
+<div class="group reveal reveal-right bg-white p-8 rounded-xl shadow-sm border border-border-subtle flex gap-6 hover:shadow-lg hover:-translate-y-1 hover:border-taman-blue-bright/40 transition-all duration-300">
+<div class="icon-badge flex-shrink-0 mt-1">
+<span class="material-symbols-outlined text-taman-blue-deep text-4xl">groups</span>
+</div>
+<div>
+<h3 class="font-title-md text-title-md text-taman-blue-deep mb-2">Gọi vốn &amp; Quan hệ cổ đông</h3>
+<p class="font-body-md text-body-md text-on-surface-variant">Chuẩn bị hồ sơ gọi vốn chuyên nghiệp (Pitch Deck, Financial Model). Đại diện làm việc với quỹ đầu tư, ngân hàng và cổ đông chiến lược.</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Quy trình làm việc -->
+<section class="py-section-gap px-margin-desktop bg-taman-blue-deep text-on-primary" id="quy-trinh">
+<div class="max-w-container-max mx-auto">
+<div class="reveal text-center mb-16">
+<h2 class="font-headline-lg text-headline-lg text-on-primary mb-4">Quy Trình Làm Việc Tiêu Chuẩn</h2>
+</div>
+<div class="relative">
+<!-- Connecting Line -->
+<div class="process-line hidden md:block absolute top-1/2 left-0 w-full h-0.5 bg-surface-tint -translate-y-1/2 z-0"></div>
+<div class="grid grid-cols-1 md:grid-cols-4 gap-8 relative z-10">
+<!-- Bước 1 -->
+<div class="process-step reveal reveal-scale text-center">
+<div class="process-badge w-16 h-16 mx-auto bg-on-primary text-taman-blue-deep rounded-full flex items-center justify-center font-headline-lg text-headline-lg font-bold mb-4 shadow-lg border-4 border-taman-blue-deep">1</div>
+<h3 class="font-title-md text-title-md mb-2">Khảo sát</h3>
+<p class="font-body-md text-body-md text-primary-fixed-dim">Đánh giá hiện trạng hệ thống tài chính và nhu cầu doanh nghiệp.</p>
+</div>
+<!-- Bước 2 -->
+<div class="process-step reveal reveal-scale reveal-delay-1 text-center">
+<div class="process-badge w-16 h-16 mx-auto bg-on-primary text-taman-blue-deep rounded-full flex items-center justify-center font-headline-lg text-headline-lg font-bold mb-4 shadow-lg border-4 border-taman-blue-deep">2</div>
+<h3 class="font-title-md text-title-md mb-2">Đề xuất giải pháp</h3>
+<p class="font-body-md text-body-md text-primary-fixed-dim">Xây dựng kế hoạch hành động và thống nhất KPI tài chính.</p>
+</div>
+<!-- Bước 3 -->
+<div class="process-step reveal reveal-scale reveal-delay-2 text-center">
+<div class="process-badge w-16 h-16 mx-auto bg-on-primary text-taman-blue-deep rounded-full flex items-center justify-center font-headline-lg text-headline-lg font-bold mb-4 shadow-lg border-4 border-taman-blue-deep">3</div>
+<h3 class="font-title-md text-title-md mb-2">Triển khai</h3>
+<p class="font-body-md text-body-md text-primary-fixed-dim">Thực thi các nghiệp vụ CFO, thiết lập báo cáo và quy trình.</p>
+</div>
+<!-- Bước 4 -->
+<div class="process-step reveal reveal-scale reveal-delay-3 text-center">
+<div class="process-badge w-16 h-16 mx-auto bg-taman-red-accent text-on-primary rounded-full flex items-center justify-center font-headline-lg text-headline-lg font-bold mb-4 shadow-lg border-4 border-taman-blue-deep">4</div>
+<h3 class="font-title-md text-title-md mb-2">Báo cáo định kỳ</h3>
+<p class="font-body-md text-body-md text-primary-fixed-dim">Họp đánh giá định kỳ, phân tích số liệu và điều chỉnh chiến lược.</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Về chúng tôi -->
+<section class="py-section-gap px-margin-desktop bg-white">
+<div class="max-w-container-max mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+<div class="reveal reveal-left relative h-[400px] rounded-xl overflow-hidden shadow-lg">
+<img class="w-full h-full object-cover transition-transform duration-700 hover:scale-105" data-alt="A portrait-style shot of a professional financial advisor reviewing documents with a business owner in a well-lit, contemporary boardroom. The focus is on collaboration, trust, and clear communication. The color tone is warm yet professional, with soft natural light highlighting the analytical documents." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBzuNV6RTzyY5z48xXLJZ35dp1-SEiTomLbXN1GBNZf1Z4hYZhTuM7bUuv2qjace5vBBKmxFEA2K3d9AIVDVzdCdRVcHhKibT8nihEnUg_4OS-txDcYBLGfaQ8Vdc7RpvSswDZ4aZy1fne5qg32F-tPVEEZMSthAOmKpB23CYpipph93OWgr8svz65XqfkxvRR-9SpW4MNlob5kDKTmhTecgMv4PiNivooCsZPVPFYQQUpXIVOI60JgKWu1LyJORAANfw3kaS4u0jU"/>
+</div>
+<div class="reveal reveal-right reveal-delay-1">
+<h2 class="font-headline-lg text-headline-lg text-taman-blue-deep mb-6">Hiểu doanh nghiệp – Hiểu số liệu – An tâm đồng hành</h2>
+<p class="font-body-lg text-body-lg text-on-surface-variant mb-6">
+                    Tâm An không chỉ cung cấp dịch vụ tài chính đơn thuần, chúng tôi định vị mình là đối tác chiến lược gắn bó với sự phát triển của bạn. Chúng tôi kết hợp sự nhạy bén trong kinh doanh, chuyên môn tài chính vững vàng và sức mạnh của công nghệ (AI) để biến những con số khô khan thành những quyết định mang lại lợi nhuận thực tế.
+                </p>
+<div class="flex gap-4">
+<span class="material-symbols-outlined text-taman-blue-bright text-3xl transition-transform duration-300 hover:scale-125 hover:-rotate-6 cursor-default">verified</span>
+<span class="material-symbols-outlined text-taman-blue-bright text-3xl transition-transform duration-300 hover:scale-125 hover:-rotate-6 cursor-default">insights</span>
+<span class="material-symbols-outlined text-taman-blue-bright text-3xl transition-transform duration-300 hover:scale-125 hover:-rotate-6 cursor-default">handshake</span>
+</div>
+</div>
+</div>
+</section>
+<!-- Contact Section -->
+<section class="py-section-gap px-margin-desktop bg-surface-container-low" id="lien-he">
+<div class="reveal reveal-scale max-w-container-max mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 bg-white rounded-2xl shadow-xl overflow-hidden">
+<div class="bg-taman-blue-deep p-12 text-on-primary">
+<h2 class="font-headline-lg text-headline-lg mb-4">Liên hệ với chúng tôi</h2>
+<p class="font-body-lg text-body-lg text-primary-fixed-dim mb-12">Đừng ngại liên hệ ngay với Tâm An hôm nay để nhận giải pháp giúp doanh nghiệp bạn gia tăng lợi nhuận.</p>
+<div class="space-y-6">
+<div class="flex items-start gap-4 transition-transform duration-300 hover:translate-x-1">
+<span class="material-symbols-outlined text-taman-red-accent">location_on</span>
+<p class="font-body-md text-body-md">71/6/13 Điện Biên Phủ, P. Gia Định, TP. Hồ Chí Minh, Việt Nam</p>
+</div>
+<div class="flex items-center gap-4 transition-transform duration-300 hover:translate-x-1">
+<span class="material-symbols-outlined text-taman-red-accent">call</span>
+<p class="font-body-md text-body-md font-bold">0917.571.711</p>
+</div>
+<div class="flex items-center gap-4 transition-transform duration-300 hover:translate-x-1">
+<span class="material-symbols-outlined text-taman-red-accent">mail</span>
+<p class="font-body-md text-body-md">contact@taman.vn</p>
+</div>
+</div>
+</div>
+<div class="p-12">
+<h3 class="font-title-md text-title-md text-taman-blue-deep mb-6">Đăng ký nhận tư vấn miễn phí</h3>
+<form class="space-y-6">
+<div>
+<label class="block font-label-md text-label-md text-on-surface mb-2">Họ và tên</label>
+<input class="w-full border border-outline-variant rounded-lg px-4 py-3 focus:outline-none focus:border-taman-blue-bright focus:ring-1 focus:ring-taman-blue-bright focus:shadow-md bg-surface-gray transition-all duration-200" type="text"/>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+<div>
+<label class="block font-label-md text-label-md text-on-surface mb-2">Số điện thoại</label>
+<input class="w-full border border-outline-variant rounded-lg px-4 py-3 focus:outline-none focus:border-taman-blue-bright focus:ring-1 focus:ring-taman-blue-bright focus:shadow-md bg-surface-gray transition-all duration-200" type="tel"/>
+</div>
+<div>
+<label class="block font-label-md text-label-md text-on-surface mb-2">Email</label>
+<input class="w-full border border-outline-variant rounded-lg px-4 py-3 focus:outline-none focus:border-taman-blue-bright focus:ring-1 focus:ring-taman-blue-bright focus:shadow-md bg-surface-gray transition-all duration-200" type="email"/>
+</div>
+</div>
+<div>
+<label class="block font-label-md text-label-md text-on-surface mb-2">Vấn đề tài chính bạn đang gặp phải</label>
+<textarea class="w-full border border-outline-variant rounded-lg px-4 py-3 focus:outline-none focus:border-taman-blue-bright focus:ring-1 focus:ring-taman-blue-bright focus:shadow-md bg-surface-gray transition-all duration-200" rows="4"></textarea>
+</div>
+<button class="btn-tactile w-full bg-taman-blue-deep text-on-primary font-title-md text-title-md py-4 rounded-lg hover:bg-taman-blue-bright hover:shadow-lg transition-all duration-200" type="submit">Gửi yêu cầu</button>
+</form>
+</div>
+</div>
+</section>
+<!-- Footer Component -->
+<footer class="bg-primary dark:bg-surface-container-lowest block w-full py-section-gap">
+<div class="reveal grid grid-cols-1 md:grid-cols-4 gap-gutter px-margin-desktop max-w-container-max mx-auto text-on-primary dark:text-on-surface font-body-md text-body-md">
+<!-- Col 1 -->
+<div class="space-y-4">
+<span class="font-headline-lg-mobile text-headline-lg-mobile font-bold text-on-primary dark:text-primary block mb-4">Tâm An CFO</span>
+<p class="text-primary-fixed-dim opacity-80">Giải pháp tài chính chuyên nghiệp cho SMEs.</p>
+<p class="text-primary-fixed-dim opacity-80 mt-4 text-sm">© 2024 Tâm An CFO. All rights reserved.</p>
+</div>
+<!-- Col 2 -->
+<div>
+<h4 class="font-title-md text-title-md mb-4 text-on-primary">Dịch vụ nổi bật</h4>
+<ul class="space-y-2">
+<li><a class="text-primary-fixed-dim dark:text-on-surface-variant opacity-80 hover:opacity-100 hover:text-primary-fixed dark:hover:text-primary transition-opacity" href="#">Kế toán quản trị</a></li>
+<li><a class="text-on-primary font-bold underline" href="#">CFO thuê ngoài</a></li>
+<li><a class="text-primary-fixed-dim dark:text-on-surface-variant opacity-80 hover:opacity-100 hover:text-primary-fixed dark:hover:text-primary transition-opacity" href="#">AI trong tài chính</a></li>
+</ul>
+</div>
+<!-- Col 3 -->
+<div>
+<h4 class="font-title-md text-title-md mb-4 text-on-primary">Liên kết</h4>
+<ul class="space-y-2">
+<li><a class="text-primary-fixed-dim dark:text-on-surface-variant opacity-80 hover:opacity-100 hover:text-primary-fixed dark:hover:text-primary transition-opacity" href="#">Về chúng tôi</a></li>
+<li><a class="text-primary-fixed-dim dark:text-on-surface-variant opacity-80 hover:opacity-100 hover:text-primary-fixed dark:hover:text-primary transition-opacity" href="#">Điều khoản dịch vụ</a></li>
+<li><a class="text-primary-fixed-dim dark:text-on-surface-variant opacity-80 hover:opacity-100 hover:text-primary-fixed dark:hover:text-primary transition-opacity" href="#">Chính sách bảo mật</a></li>
+<li><a class="text-primary-fixed-dim dark:text-on-surface-variant opacity-80 hover:opacity-100 hover:text-primary-fixed dark:hover:text-primary transition-opacity" href="#">Tin tức tài chính</a></li>
+</ul>
+</div>
+<!-- Col 4 -->
+<div>
+<h4 class="font-title-md text-title-md mb-4 text-on-primary">Liên hệ</h4>
+<ul class="space-y-2 text-primary-fixed-dim opacity-80">
+<li class="flex items-center gap-2"><span class="material-symbols-outlined text-sm">call</span> 0917.571.711</li>
+<li class="flex items-center gap-2"><span class="material-symbols-outlined text-sm">mail</span> contact@taman.vn</li>
+<li class="flex items-start gap-2"><span class="material-symbols-outlined text-sm mt-1">location_on</span> 71/6/13 Điện Biên Phủ, P. Gia Định, TP. HCM</li>
+</ul>
+</div>
+</div>
+</footer>
+<!-- AI Chatbot Widget -->
+<div id="chatbot-root">
+<button aria-label="Mở chat tư vấn" id="chatbot-toggle">
+<span class="material-symbols-outlined" id="chatbot-toggle-icon">chat</span>
+</button>
+<div class="chatbot-window hidden" id="chatbot-window">
+<div class="chatbot-header">
+<div class="chatbot-header-info">
+<div class="chatbot-avatar">
+<span class="material-symbols-outlined">smart_toy</span>
+</div>
+<div>
+<p class="chatbot-name">Trợ lý Tâm An CFO</p>
+<p class="chatbot-status"><span class="status-dot"></span> Đang hoạt động</p>
+</div>
+</div>
+<div class="chatbot-header-actions">
+<button id="chatbot-refresh" title="Bắt đầu lại hội thoại">
+<span class="material-symbols-outlined">refresh</span>
+</button>
+<button id="chatbot-close" title="Đóng">
+<span class="material-symbols-outlined">close</span>
+</button>
+</div>
+</div>
+<div class="chatbot-messages" id="chatbot-messages"></div>
+<div class="chatbot-input-area">
+<input autocomplete="off" id="chatbot-input" placeholder="Nhập câu hỏi của bạn..." type="text"/>
+<button id="chatbot-send" title="Gửi">
+<span class="material-symbols-outlined">send</span>
+</button>
+</div>
+</div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+<script src="chatbot.js"></script>
+<script>
+    (function () {
+        var prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+        // Scroll-reveal for any element tagged with .reveal / .process-line
+        var revealTargets = document.querySelectorAll(".reveal, .process-line");
+        if (prefersReducedMotion || !("IntersectionObserver" in window)) {
+            revealTargets.forEach(function (el) { el.classList.add("in-view"); });
+        } else {
+            var observer = new IntersectionObserver(function (entries) {
+                entries.forEach(function (entry) {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add("in-view");
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.15, rootMargin: "0px 0px -60px 0px" });
+            revealTargets.forEach(function (el) { observer.observe(el); });
+        }
+
+        // Animated counter (e.g. +24%)
+        var counters = document.querySelectorAll(".counter");
+        function animateCounter(el) {
+            var target = parseInt(el.getAttribute("data-target"), 10) || 0;
+            if (prefersReducedMotion) {
+                el.textContent = target;
+                return;
+            }
+            var duration = 1400;
+            var startTime = null;
+            function step(timestamp) {
+                if (!startTime) startTime = timestamp;
+                var progress = Math.min((timestamp - startTime) / duration, 1);
+                var eased = 1 - Math.pow(1 - progress, 3);
+                el.textContent = Math.round(eased * target);
+                if (progress < 1) {
+                    window.requestAnimationFrame(step);
+                }
+            }
+            window.requestAnimationFrame(step);
+        }
+        if (counters.length) {
+            if (!("IntersectionObserver" in window)) {
+                counters.forEach(animateCounter);
+            } else {
+                var counterObserver = new IntersectionObserver(function (entries) {
+                    entries.forEach(function (entry) {
+                        if (entry.isIntersecting) {
+                            animateCounter(entry.target);
+                            counterObserver.unobserve(entry.target);
+                        }
+                    });
+                }, { threshold: 0.5 });
+                counters.forEach(function (el) { counterObserver.observe(el); });
+            }
+        }
+    })();
+</script>
+</body></html>

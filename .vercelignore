@@ -1,0 +1,6 @@
+.deploy
+generate_slides.py
+taman_intro.md
+output
+.env.local
+.env

@@ -1,0 +1,170 @@
+Promp for AI 
+
+Bạn là một Senior Frontend Developer + AI Engineer.
+
+Nhiệm vụ của bạn là xây dựng và tích hợp một AI Chatbot hoàn chỉnh vào Landing Page (HTML/CSS/JS hoặc React đều được), đảm bảo chuẩn UI/UX cao cấp và hoạt động mượt mà như sản phẩm thực tế.
+
+---
+
+## 🎯 1. YÊU CẦU GIAO DIỆN (UI/UX)
+
+### 1. Floating Chatbot
+
+* Hiển thị dạng floating ở góc dưới bên phải màn hình
+* Phong cách: Glassmorphism (nền mờ, trong suốt)
+* Border: viền mỏng tinh tế
+* Shadow: sử dụng shadow-2xl để tạo chiều sâu
+
+---
+
+### 2. Chat Window Header
+
+Bao gồm:
+
+* Tên chatbot
+* Trạng thái online (chấm xanh có hiệu ứng nhấp nháy)
+* Nút Close (đóng chatbot)
+* Nút Refresh (reset hội thoại)
+
+---
+
+### 3. Logic nút Refresh (BẮT BUỘC)
+
+Khi click nút refresh:
+
+1. Icon refresh phải có animation xoay
+2. Xóa toàn bộ lịch sử chat:
+   chatMessages.innerHTML = ''
+3. Hiển thị lại tin nhắn chào mặc định ban đầu
+4. Sau đúng 500ms → dừng animation xoay
+
+---
+
+### 4. Typing Animation
+
+Khi user gửi tin:
+
+* Hiển thị "Đang nhập..."
+* Có animation 3 dấu chấm nhảy
+* Khi AI trả lời xong → xóa typing → hiển thị nội dung
+
+---
+
+### 5. Render Markdown (BẮT BUỘC dùng marked.js)
+
+* Tất cả response từ AI phải render qua:
+  marked.parse(text)
+
+---
+
+### 6. CSS cho Markdown (.chat-markdown)
+
+Thiết kế rõ ràng, dễ đọc:
+
+* p → line-height: 1.6
+* ul/li → bullet rõ ràng, thụt lề chuẩn
+* strong → in đậm + màu accent
+* code → nền tối + font monospace (Fira Code / Consolas)
+* blockquote → có border trái + màu chữ nhạt
+
+---
+
+Prompt cấu hình AI
+"Tôi cần tích hợp một API LLM tùy chỉnh vào dự án của mình. API này tuân thủ hoàn toàn theo chuẩn deepseek
+Thông tin cấu hình API như sau:
+{
+  "provider": "deepseek",
+  "name": "DeepSeek V4 Flash",
+  "base_url": "https://api.deepseek.com",
+  "endpoint": "/chat/completions",
+  "model": "deepseek-v4-flash",
+  "api_key": "",
+  "authentication": {
+    "type": "bearer",
+    "header": "Authorization",
+    "value": "Bearer "
+  },
+  "headers": {
+    "Content-Type": "application/json"
+  },
+  "stream": false,
+  "temperature": 0.7,
+  "max_tokens": 4096
+}
+## 📂 3. DỮ LIỆU CHATBOT
+
+Tạo file:
+chatbot_data.txt
+
+Nội dung:
+
+* Tên chuyên gia: Nguyễn Văn A
+* Định vị: Chuyên gia AI & Tự động hóa
+* Giải pháp: MCP server, N8N AI, đào tạo AI branding
+* Khóa học: K89 - Agentic AI (12 buổi, Online Zoom)
+* Liên hệ: [a@example.com](mailto:a@example.com) | Zalo 0123456789
+
+---
+
+## ⚙️ 4. LOGIC SYSTEM PROMPT
+
+Load nội dung từ chatbot_data.txt và tạo SYSTEM_PROMPT như sau:
+
+* Vai trò: AI trợ lý độc quyền cho chuyên gia
+* Chỉ được trả lời dựa trên Knowledge Base
+* Phải trả lời bằng Markdown đẹp
+* Luôn:
+
+  * Chào thân thiện
+  * Trả lời rõ ràng
+  * Kết thúc bằng lời mời hỏi thêm
+* Nếu ngoài phạm vi → từ chối nhẹ + hướng dẫn liên hệ
+
+---
+
+## 🔌 5. LOGIC GỬI API
+
+* Lưu lịch sử chat (messages array)
+* Gửi request POST đến OpenRouter
+* Nhận response → render markdown
+* Xử lý loading + error
+
+---
+
+## 🚀 6. YÊU CẦU CODE
+
+* Code sạch, dễ đọc
+* Tách rõ:
+
+  * UI
+  * Logic
+  * API
+* Có comment giải thích
+* Có thể chạy ngay (production-ready)
+
+---
+
+## 🎁 7. BONUS (nếu có thể)
+
+* Auto scroll xuống tin nhắn mới
+* Enter để gửi tin
+* Responsive mobile
+* Hiệu ứng mượt (fade/slide)
+
+---
+
+## 🎯 OUTPUT MONG MUỐN
+
+Trả về:
+
+1. File HTML hoặc React component hoàn chỉnh
+2. File CSS (hoặc Tailwind)
+3. File JS xử lý logic chatbot
+4. Code fetch API đầy đủ
+5. Hướng dẫn cách chạy
+
+---
+
+Hãy viết toàn bộ code hoàn chỉnh, không giải thích lan man.
+
+Api key deepseek là : …………………………
