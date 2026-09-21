@@ -1,0 +1,7 @@
+# Apache routing for Hostinger
+RewriteEngine On
+
+# Keep real files and directories working normally.
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^api/register$ api/register.php [L,QSA]

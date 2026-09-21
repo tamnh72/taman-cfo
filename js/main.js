@@ -144,6 +144,7 @@
       }
 
       var payload = {
+        submission_id: window.crypto && window.crypto.randomUUID ? window.crypto.randomUUID() : String(Date.now()) + "-" + Math.random().toString(16).slice(2),
         full_name: form.full_name.value.trim(),
         email: form.email.value.trim(),
         phone: form.phone.value.trim(),
@@ -154,19 +155,45 @@
         wants: Array.from(form.querySelectorAll('input[name="wants"]:checked')).map(function (c) {
           return c.value;
         }),
+        consent: form.consent.checked,
+        source_url: window.location.href,
       };
 
       track("registration_form_submit", payload);
 
-      // TODO: gửi `payload` tới CRM/Email/Google Sheet thực tế tại đây,
-      // ví dụ fetch('/api/register', { method: 'POST', body: JSON.stringify(payload) }).
+      var submitButton = form.querySelector('button[type="submit"]');
+      if (submitButton) {
+        submitButton.disabled = true;
+        submitButton.textContent = "Đang gửi…";
+      }
 
-      showStatus("success", "Đăng ký thành công! Đang chuyển đến trang xác nhận…");
-      form.reset();
-
-      setTimeout(function () {
-        window.location.href = "thank-you.html";
-      }, 900);
+      fetch("api/register", {
+        method: "POST",
+        headers: { "Content-Type": "application/json", Accept: "application/json" },
+        body: JSON.stringify(payload),
+      })
+        .then(function (response) {
+          return response.json().catch(function () { return {}; }).then(function (data) {
+            if (!response.ok || !data.ok) {
+              throw new Error(data.error || "Không thể gửi đăng ký lúc này.");
+            }
+            return data;
+          });
+        })
+        .then(function () {
+          track("registration_form_success", { submission_id: payload.submission_id });
+          showStatus("success", "Đăng ký thành công! Đang chuyển đến trang xác nhận…");
+          form.reset();
+          setTimeout(function () { window.location.href = "thank-you.html"; }, 900);
+        })
+        .catch(function (error) {
+          track("registration_form_error", { message: error.message });
+          showStatus("error", error.message || "Không thể gửi đăng ký lúc này. Vui lòng thử lại sau.");
+          if (submitButton) {
+            submitButton.disabled = false;
+            submitButton.textContent = "Gửi đăng ký";
+          }
+        });
     });
   }
 
