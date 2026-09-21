@@ -238,7 +238,9 @@ try {
     if (!is_array($sendyParsed) || empty($sendyParsed['scheme']) || empty($sendyParsed['host'])) {
         throw new RuntimeException('SENDY_URL không hợp lệ.');
     }
-    $sendySubscribeUrl = $sendyParsed['scheme'] . '://' . $sendyParsed['host'] . '/subscribe';
+    $sendyPath = rtrim((string) ($sendyParsed['path'] ?? ''), '/');
+    $sendySubscribeUrl = ($sendyPath === '' ? '' : $sendyPath) . '/subscribe';
+    $sendySubscribeUrl = $sendyParsed['scheme'] . '://' . $sendyParsed['host'] . $sendySubscribeUrl;
     $sendy = post_form($sendySubscribeUrl, [
         'api_key' => $sendyApiKey,
         'name' => $fullName,
