@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cảm ơn bạn đã đăng ký | Khóa học AI thực tế</title>
+<meta name="description" content="Cảm ơn bạn đã đăng ký nhận thông tin khóa học Từ Chatbot đến AI Workflow doanh nghiệp.">
+<meta name="robots" content="noindex">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 32 32%22><rect width=%2232%22 height=%2232%22 rx=%228%22 fill=%22%230E7C7B%22/></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/styles.css">
+<style>
+  .thanks-wrap {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 40px 20px;
+  }
+  .thanks-card {
+    max-width: 560px;
+    text-align: center;
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    padding: 48px 36px;
+    box-shadow: var(--shadow-md);
+  }
+  .thanks-icon {
+    width: 64px; height: 64px;
+    margin: 0 auto 20px;
+    border-radius: 50%;
+    background: var(--color-teal-light);
+    color: var(--color-teal-dark);
+    display: flex; align-items: center; justify-content: center;
+  }
+  .thanks-actions { display: flex; flex-wrap: wrap; gap: 12px; justify-content: center; margin-top: 28px; }
+</style>
+</head>
+<body>
+  <div class="thanks-wrap">
+    <div class="thanks-card">
+      <div class="thanks-icon">
+        <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg>
+      </div>
+      <h1 style="font-size:24px;">Cảm ơn bạn đã đăng ký!</h1>
+      <p>Chúng tôi đã ghi nhận thông tin của bạn. Đội ngũ tổ chức khóa học sẽ gửi thông tin chi tiết — bao gồm lịch khai giảng, học phí và các bước tiếp theo — qua email hoặc số điện thoại bạn đã cung cấp.</p>
+      <p>Nếu bạn đã chọn nhận <strong>mẫu AI Problem &amp; Solution Brief</strong>, tài liệu sẽ được gửi kèm trong email xác nhận.</p>
+      <div class="thanks-actions">
+        <a href="index.html" class="btn btn-secondary">Quay về trang chủ</a>
+        <a href="index.html#faq" class="btn btn-primary">Xem câu hỏi thường gặp</a>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    window.dataLayer.push({ event: "thank_you_page_view" });
+    if (window.location.hostname === "localhost" || window.location.hostname === "127.0.0.1") {
+      console.log("[track] thank_you_page_view", {});
+    }
+  </script>
+</body>
+</html>
