@@ -1,6 +1,11 @@
 # Apache routing for Hostinger
 RewriteEngine On
 
+# Never serve secrets or deployment metadata.
+<FilesMatch "^\.env|^\.git">
+    Require all denied
+</FilesMatch>
+
 # Keep real files and directories working normally.
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
