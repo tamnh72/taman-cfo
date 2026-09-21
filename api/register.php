@@ -148,8 +148,16 @@ $sendgridApiKey = env_value('SENDGRID_API_KEY');
 $sendgridFromEmail = env_value('SENDGRID_FROM_EMAIL');
 $sendgridFromName = env_value('SENDGRID_FROM_NAME') ?: 'Webketoan Academy';
 
-if ($appsScriptUrl === '' || $webhookSecret === '' || $sendyApiKey === '' || $sendyListId === '' || $sendgridApiKey === '' || $sendgridFromEmail === '') {
-    respond(500, ['ok' => false, 'error' => 'Dịch vụ đăng ký chưa được cấu hình đầy đủ.']);
+$requiredConfig = [
+    'WEBHOOK_SECRET' => $webhookSecret,
+    'SENDY_API_KEY' => $sendyApiKey,
+    'SENDY_LIST_ID' => $sendyListId,
+    'SENDGRID_API_KEY' => $sendgridApiKey,
+    'SENDGRID_FROM_EMAIL' => $sendgridFromEmail,
+];
+$missingConfig = array_keys(array_filter($requiredConfig, static fn ($value): bool => $value === ''));
+if ($missingConfig !== []) {
+    respond(500, ['ok' => false, 'error' => 'Dịch vụ đăng ký chưa được cấu hình đầy đủ.', 'missing_config' => $missingConfig]);
 }
 
 $submissionId = trim((string) ($input['submission_id'] ?? ''));
