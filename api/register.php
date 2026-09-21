@@ -18,8 +18,19 @@ function respond(int $status, array $payload): never
 
 function env_value(string $name): string
 {
-    $value = getenv($name);
-    return is_string($value) ? trim($value) : '';
+    $sources = [
+        getenv($name),
+        $_ENV[$name] ?? null,
+        $_SERVER[$name] ?? null,
+    ];
+
+    foreach ($sources as $value) {
+        if (is_string($value) && trim($value) !== '') {
+            return trim($value);
+        }
+    }
+
+    return '';
 }
 
 function post_json(string $url, array $payload, array $headers = []): array
