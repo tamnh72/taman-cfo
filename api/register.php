@@ -222,7 +222,7 @@ $record = [
 ];
 
 $steps = [];
-$diagnostics = [];
+
 try {
     $sheet = post_json($appsScriptUrl, $record);
     if ($sheet['status'] < 200 || $sheet['status'] >= 300) {
@@ -240,14 +240,16 @@ try {
         throw new RuntimeException('SENDY_URL không hợp lệ.');
     }
     $sendyPath = rtrim((string) ($sendyParsed['path'] ?? ''), '/');
-    // SENDY_URL may be the installation URL (/app) or an admin/list page
-    // such as /update-list?i=2&l=20. The API always lives under /app/subscribe.
-    if ($sendyPath === '' || $sendyPath === '/update-list' || $sendyPath === '/app') {
-        $sendyPath = '/app';
+    // Sendy installations commonly expose the API at either /app/subscribe
+    // or /subscribe. Try the configured installation path first, then the
+    // root endpoint only when the first candidate is a genuine 404.
+    $sendyPaths = [];
+    if ($sendyPath !== '' && $sendyPath !== '/update-list') {
+        $sendyPaths[] = $sendyPath . '/subscribe';
     }
-    $sendySubscribeUrl = $sendyPath . '/subscribe';
-    $sendySubscribeUrl = $sendyParsed['scheme'] . '://' . $sendyParsed['host'] . $sendySubscribeUrl;
-    $sendy = post_form($sendySubscribeUrl, [
+    $sendyPaths[] = '/subscribe';
+    $sendyPaths = array_values(array_unique($sendyPaths));
+    $sendyPayload = [
         'api_key' => $sendyApiKey,
         'name' => $fullName,
         'email' => $email,
@@ -255,9 +257,19 @@ try {
         'boolean' => 'true',
         'referrer' => trim((string) ($input['source_url'] ?? '')),
         'gdpr' => 'true',
-    ]);
-    $diagnostics['sendy_status'] = $sendy['status'];
-    $diagnostics['sendy_body'] = $sendy['body'];
+    ];
+    $sendy = null;
+    foreach ($sendyPaths as $path) {
+        $candidateUrl = $sendyParsed['scheme'] . '://' . $sendyParsed['host'] . $path;
+        $candidate = post_form($candidateUrl, $sendyPayload);
+        $sendy = $candidate;
+        if ($candidate['status'] !== 404) {
+            break;
+        }
+    }
+    if ($sendy === null) {
+        throw new RuntimeException('Không nhận được phản hồi từ Sendy.');
+    }
     $sendyOk = $sendy['status'] >= 200 && $sendy['status'] < 300 && preg_match('/^(true|success:\s*true|already subscribed\.?)/i', $sendy['body']) === 1;
     if (!$sendyOk) {
         throw new RuntimeException('Sendy không ghi nhận được email.');
@@ -273,9 +285,5 @@ try {
     respond(200, ['ok' => true, 'submission_id' => $submissionId, 'steps' => $steps]);
 } catch (Throwable $error) {
     error_log('registration_failed ' . $submissionId . ': ' . $error->getMessage());
-    $failure = ['ok' => false, 'submission_id' => $submissionId, 'steps' => $steps, 'error' => 'Đã ghi nhận lỗi khi xử lý đăng ký. Vui lòng thử lại sau.'];
-    if (($input['debug'] ?? false) === true) {
-        $failure['diagnostics'] = $diagnostics;
-    }
-    respond(502, $failure);
+    respond(502, ['ok' => false, 'submission_id' => $submissionId, 'steps' => $steps, 'error' => 'Đã ghi nhận lỗi khi xử lý đăng ký. Vui lòng thử lại sau.']);
 }
