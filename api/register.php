@@ -222,6 +222,7 @@ $record = [
 ];
 
 $steps = [];
+$diagnostics = [];
 try {
     $sheet = post_json($appsScriptUrl, $record);
     if ($sheet['status'] < 200 || $sheet['status'] >= 300) {
@@ -250,6 +251,8 @@ try {
         'referrer' => trim((string) ($input['source_url'] ?? '')),
         'gdpr' => 'true',
     ]);
+    $diagnostics['sendy_status'] = $sendy['status'];
+    $diagnostics['sendy_body'] = $sendy['body'];
     $sendyOk = $sendy['status'] >= 200 && $sendy['status'] < 300 && preg_match('/^(true|success: true|already subscribed\.?)/i', $sendy['body']) === 1;
     if (!$sendyOk) {
         throw new RuntimeException('Sendy không ghi nhận được email.');
@@ -265,5 +268,5 @@ try {
     respond(200, ['ok' => true, 'submission_id' => $submissionId, 'steps' => $steps]);
 } catch (Throwable $error) {
     error_log('registration_failed ' . $submissionId . ': ' . $error->getMessage());
-    respond(502, ['ok' => false, 'submission_id' => $submissionId, 'steps' => $steps, 'error' => 'Đã ghi nhận lỗi khi xử lý đăng ký. Vui lòng thử lại sau.']);
+    respond(502, ['ok' => false, 'submission_id' => $submissionId, 'steps' => $steps, 'error' => 'Đã ghi nhận lỗi khi xử lý đăng ký. Vui lòng thử lại sau.', 'diagnostics' => $diagnostics]);
 }
