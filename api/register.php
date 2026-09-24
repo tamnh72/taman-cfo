@@ -259,9 +259,11 @@ try {
         'gdpr' => 'true',
     ];
     $sendy = null;
+    $sendyAttempts = [];
     foreach ($sendyPaths as $path) {
         $candidateUrl = $sendyParsed['scheme'] . '://' . $sendyParsed['host'] . $path;
         $candidate = post_form($candidateUrl, $sendyPayload);
+        $sendyAttempts[] = ['path' => $path, 'status' => $candidate['status'], 'body' => $candidate['body']];
         $sendy = $candidate;
         if ($candidate['status'] !== 404) {
             break;
@@ -285,5 +287,9 @@ try {
     respond(200, ['ok' => true, 'submission_id' => $submissionId, 'steps' => $steps]);
 } catch (Throwable $error) {
     error_log('registration_failed ' . $submissionId . ': ' . $error->getMessage());
-    respond(502, ['ok' => false, 'submission_id' => $submissionId, 'steps' => $steps, 'error' => 'Đã ghi nhận lỗi khi xử lý đăng ký. Vui lòng thử lại sau.']);
+    $failure = ['ok' => false, 'submission_id' => $submissionId, 'steps' => $steps, 'error' => 'Đã ghi nhận lỗi khi xử lý đăng ký. Vui lòng thử lại sau.'];
+    if (($input['debug'] ?? false) === true) {
+        $failure['sendy_attempts'] = $sendyAttempts ?? [];
+    }
+    respond(502, $failure);
 }
