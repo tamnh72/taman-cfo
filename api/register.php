@@ -133,9 +133,24 @@ function post_form(string $url, array $payload): array
 
 function sendgrid_email(string $apiKey, string $fromEmail, string $fromName, string $toEmail, string $name, array $wants): array
 {
-    $selected = $wants !== [] ? implode(', ', $wants) : 'Thông tin khóa học';
+    $wantLabels = [
+        'course_info' => 'Thông tin khóa học',
+        'solution_brief' => 'Mẫu Solution Brief',
+        'consultation' => 'Lịch tư vấn / giới thiệu',
+    ];
+    $selectedLabels = [];
+    foreach ($wants as $want) {
+        $selectedLabels[] = $wantLabels[$want] ?? $want;
+    }
+    if ($selectedLabels === []) {
+        $selectedLabels[] = 'Thông tin khóa học';
+    }
+    $selectedPlain = implode("\n- ", $selectedLabels);
+    $selectedHtml = implode('', array_map(
+        static fn (string $label): string => '<li>' . htmlspecialchars($label, ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8') . '</li>',
+        $selectedLabels
+    ));
     $safeName = htmlspecialchars($name, ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8');
-    $safeSelected = htmlspecialchars($selected, ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8');
 
     $payload = [
         'personalizations' => [[
@@ -146,11 +161,11 @@ function sendgrid_email(string $apiKey, string $fromEmail, string $fromName, str
         'content' => [
             [
                 'type' => 'text/plain',
-                'value' => "Xin chào {$name},\n\nWebketoan Academy đã ghi nhận đăng ký của bạn.\nNội dung bạn chọn nhận: {$selected}.\n\nChúng tôi sẽ gửi thông tin tiếp theo qua email này.\n\nWebketoan Academy",
+                'value' => "Xin chào {$name},\n\nWebketoan Academy đã ghi nhận đăng ký của bạn.\n\nNội dung bạn chọn nhận:\n- {$selectedPlain}\n\nChúng tôi sẽ gửi thông tin tiếp theo qua email này.\n\nWebketoan Academy",
             ],
             [
                 'type' => 'text/html',
-                'value' => "<p>Xin chào <strong>{$safeName}</strong>,</p><p>Webketoan Academy đã ghi nhận đăng ký của bạn.</p><p>Nội dung bạn chọn nhận: <strong>{$safeSelected}</strong>.</p><p>Chúng tôi sẽ gửi thông tin tiếp theo qua email này.</p><p>Webketoan Academy</p>",
+                'value' => "<p>Xin chào <strong>{$safeName}</strong>,</p><p>Webketoan Academy đã ghi nhận đăng ký của bạn.</p><p><strong>Nội dung bạn chọn nhận:</strong></p><ul>{$selectedHtml}</ul><p>Chúng tôi sẽ gửi thông tin tiếp theo qua email này.</p><p>Webketoan Academy</p>",
             ],
         ],
     ];
